@@ -457,3 +457,80 @@ do_something if x.between?(1000, 2000)
       partial_compute(thing)
     end
 ```
+###Naming
+
+- Tất cả các cách đặt tên biến, tên hàm cần được viết bằng tiếng Anh, và chỉ sử dụng các kí tự ascii
+- Đặt tên biến, tên hàm bằng chữ viết thường, cách nhau bởi dấu _
+```
+# good
+:some_symbol
+
+def some_method
+  ...
+end
+```
+- Đặt tên Class bằng cách viết hoa các chữ cái đầu tiên ClassName
+- Đặt tên hằng số bằng các chữ viết hoa toàn bộ, cách nhau bởi dấu _
+```
+# bad
+SomeConst = 5
+
+# good
+SOME_CONST = 5
+```
+- Nhưng hàm trả về giá trị boolean cần được kết thúc bởi dấu ?. Ví dụ Array#empty?
+Đối với những hàm có thể gây ra hậu quả gì đó (ví dụ như thay đổi đối tượng self) nên được kết thúc với dấu !
+```
+  # bad - Nếu đây chỉ là hàm update thông thường
+  class Person
+    def update!
+    end
+  end
+
+  # good
+  class Person
+    def update
+    end
+  end
+
+  # good
+  class Person
+    # phân biệt với hàm update ở dưới. Trong hàm này có xử lí 1 tác vụ gì khác
+    def update!
+    end
+
+    def update
+    end
+  end
+```
+- Sử dụng flat_map thay cho map ... .flatten
+```
+ # bad
+  all_songs = users.map(&amp;:songs).flatten.uniq
+
+  # good
+  all_songs = users.flat_map(&amp;:songs).uniq
+```
+- Sử dụng reverse_each(Không tạo ra array mới) thay cho reverse.each
+```
+  # bad
+  array.reverse.each { ... }
+
+  # good
+  array.reverse_each { ... }
+```
+###Comments
+
+- Mỗi comment nên cách dấu # một dấu cách
+- Tránh những comment không cần thiết
+```
+count += 1 # tăng giá trị biến đếm lên 1
+```
+- Comment cũng cần được update. Những comment không được update nguy hiểm hơn cả không comment
+- Tránh comment cho những đoạn code chưa được refactor, rườm rà. Hãy refactor trước để code có thể dễ hiểu.
+- Đối với những comment dài, nên xuống dòng, và dòng dưới nên thụt vào 2 dấu cách
+- Thêm TODO đối với những chức năng cần được bổ sung về sau
+- Thêm FIXME đối với những chức năng cần được thay đổi, sửa
+- Thêm OPTIMIZE đối với những đoạn code chưa tối ưu làm ảnh hưởng tới performance
+- Thêm HACK đối với những đoạn code vi phạm practices và cần được refactor loại bỏ
+- Thêm REVIEW đối với những chức năng cần được xác nhận lại
