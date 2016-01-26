@@ -518,12 +518,12 @@ SOME_CONST = 5
 
   # good
   array.reverse_each { ... }
-```
+
 ###Comments
 
 - Mỗi comment nên cách dấu # một dấu cách
 - Tránh những comment không cần thiết
-```
+``
 count += 1 # tăng giá trị biến đếm lên 1
 ```
 - Comment cũng cần được update. Những comment không được update nguy hiểm hơn cả không comment
@@ -534,3 +534,78 @@ count += 1 # tăng giá trị biến đếm lên 1
 - Thêm OPTIMIZE đối với những đoạn code chưa tối ưu làm ảnh hưởng tới performance
 - Thêm HACK đối với những đoạn code vi phạm practices và cần được refactor loại bỏ
 - Thêm REVIEW đối với những chức năng cần được xác nhận lại
+=================================================================================
+
+###Trong phần cuối cùng tôi sẽ đề cập tới String và Regular Expressions
+
+##Collections
+
+- Khởi tạo mảng và bảng băm
+```
+# bad
+arr = Array.new
+hash = Hash.new
+
+# good
+arr = []
+hash = {}
+```
+- Sử dụng %w() cho mảng các chữ, %i() cho các ký tự
+```
+# good
+STATES = %w(draft open closed)
+STATES = %i(draft open closed)
+```
+- Sử dụng first và last thay vì [0] và [-1]
+- Sử dụng Set thay cho Array nếu bạn cần một mảng gồm những phần tử không lặp lại
+- Sử dụng symbols thay cho các strings khi khai báo hash keys
+```
+# bad
+hash = { 'one' =&gt; 1, 'two' =&gt; 2, 'three' =&gt; 3 }
+hash = { :one =&gt; 1, :two =&gt; 2, :three =&gt; 3 }
+
+# good
+hash = { one: 1, two: 2, three: 3 }
+```
+Sử dụng Hash#key? thay cho Hash#has_key? và Hash#value? thay cho Hash#has_value?
+```
+ # bad
+  hash.has_key?(:test)
+  hash.has_value?(value)
+
+  # good
+  hash.key?(:test)
+  hash.value?(value)
+```
+Sử dụng Hash#fetch
+```
+batman = { name: 'Bruce Wayne' }
+#bad
+heroes[:supermann] # =&gt;; nil
+
+#good
+heroes.fetch(:supermann)
+
+#bad
+batman[:is_evil] || true
+
+#good
+batman.fetch(:is_evil, true)
+```
+###String
+
+- Nên sử dụng kiểu gọi string trong " " thay vì dùng kiểu nối string
+```
+# bad
+email_with_name = user.name + '&lt;' + user.email + '&gt;'
+
+# good
+email_with_name = "#{user.name} &lt;#{user.email}&gt;"
+```
+- Sử dụng ' ' thay vì sử dụng " " nếu bạn không cần gọi string thông qua biến, hay có những kí tự đặc biệt như /t /n '
+Sử dụng String#<< thay cho String#+ . String#<< nhanh hơn, nhất là khi bạn phải xử lí nhiều string objects
+```
+# good and also fast
+  html = ''
+  html &lt;&lt; 'Page title'
+```
