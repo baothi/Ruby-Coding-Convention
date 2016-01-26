@@ -4,12 +4,12 @@ Source Code Layout
 Mọi người đều nghĩ rằng tất cả style trừ của họ đều thật là khó đọc. Bỏ đi ba chữ ‘trừ  của họ’ và họ có lẽ đúng …
 
 Encode các file của project bằng
-``
+```
 UTF-8
-``
+```
 
 - Sử dụng 2 dấu cách (soft tabs) cho mỗi thụt đầu dòng thay vì dùng tab thông thường (hard tabs – 4 spaces)
-``
+```
 # bad - four spaces
 def some_method
     do_something
@@ -48,10 +48,7 @@ e = M * c**2
 ```
 some(arg).other
 [1, 2, 3].size
-1
-2
-some(arg).other
-[1, 2, 3].size
+
 ```
 - Không có dấu cách sau !
 ```
