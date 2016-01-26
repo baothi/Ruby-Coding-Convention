@@ -534,6 +534,8 @@ count += 1 # tăng giá trị biến đếm lên 1
 - Thêm OPTIMIZE đối với những đoạn code chưa tối ưu làm ảnh hưởng tới performance
 - Thêm HACK đối với những đoạn code vi phạm practices và cần được refactor loại bỏ
 - Thêm REVIEW đối với những chức năng cần được xác nhận lại
+
+
 =================================================================================
 
 ###Trong phần cuối cùng tôi sẽ đề cập tới String và Regular Expressions
