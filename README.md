@@ -1,5 +1,4 @@
-https://github.com/bbatsov/ruby-style-guide#syntax
-http://labs.septeni-technology.jp/ruby-tutorial-box/ruby-coding-convention-phan-1/
+
 # Ruby-Coding-Convention
 Source Code Layout
 
